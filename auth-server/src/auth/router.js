@@ -24,7 +24,14 @@ authRouter.get('/login',auth, (req, res, next) => {
 });
 
 authRouter.get('/oauth', (req, res, next) => {
+  let URL = process.env.CLIENT_URL;
 
+  oauth.authorize(req)
+    .then(token => {
+      res.cookie('auth', token);
+      res.redirect(`${URL}?token=${token}`);
+    })
+    .catch(next);
 });
 
 // A little proof of life here, to show how we can protect any
