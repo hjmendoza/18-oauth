@@ -6,19 +6,22 @@ import User from '../model';
 
 const authorize = (req) => {
   let code = req.query.code;
+  console.log(code)
 
-  return superagent.post('https://www.googleapis.com/oauth2/v4/token')
+  return superagent.post('https://api.dropboxapi.com/1/oauth2/token')
     .type('form')
     .send({
       code: code,
-      client_id: process.env.GOOGLE_CLIENT_ID,
-      client_secret: process.env.GOOGLE_CLIENT_SECRET,
-      redirect_uri: process.env.API_URL + '/oauth',
+      client_id: process.env.DROPBOX_CLIENT_ID,
+      client_secret: process.env.DROPBOX_CLIENT_SECRET,
+      redirect_uri: process.env.API_URL + '/oauth2/authorize',
       grant_type: 'authorization_code',
     })
     .then(response => {
-      let googleToken = response.body.access_token;
-      return googleToken;
+      console.log(response);
+      let dropboxToken = response.body.access_token;
+      console.log('we got here', dropboxToken);
+      return dropboxToken;
     })
     .then(token => {
       return superagent.get('https://www.googleapis.com/plus/v1/people/me/openIdConnect')

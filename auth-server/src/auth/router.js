@@ -23,7 +23,7 @@ authRouter.get('/login',auth, (req, res, next) => {
   res.send(req.token);
 });
 
-authRouter.get('/oauth', (req, res, next) => {
+authRouter.get('/oauth2/authorize', (req, res, next) => {
   let URL = process.env.CLIENT_URL;
 
   oauth.authorize(req)
