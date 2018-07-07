@@ -142,4 +142,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+/auth-server/.gitignore
+/auth-server/node_modules
+/web-server/node_modules
+
 # End of https://www.gitignore.io/api/vim,osx,node,linux,windows
