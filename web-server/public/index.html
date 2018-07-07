@@ -53,5 +53,24 @@
 
         <script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 
+        <script>
+            let googleURL = 'https://accounts.google.com/o/oauth2/v2/auth'
+            let options = {
+                client_id:'549677575211-krj7ev8lk8i9a5n8v6uhv16lag0c3int.apps.googleusercontent.com',
+                redirect_uri:'http://localhost:3000/oauth',
+                scope: 'email openid profile',
+                prompt: 'consent',
+                response_type: 'code'
+            }
+
+            let queryString = Object.keys(options).map((key, i) => {
+                return `${key}=` + encodeURIComponent(options[key]);
+            }).join('&');
+
+            let URL = `${googleURL}?${queryString}`;
+
+             $('#oauth').append(`<a href='${URL}'>Login With Google</a>`)
+        </script>
+
     </body>
 </html>
