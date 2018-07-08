@@ -1,23 +1,21 @@
-![cf](http://i.imgur.com/7v5ASc8.png) OAuth
+![cf](http://i.imgur.com/7v5ASc8.png) OAuth - Haley Mendoza
 ===
 
-## Submission Instructions
-  * Follow the instructions in the "Lab Instructions" documentation in the reference folder of the class repository
-  
-## Learning Objectives  
-* Students will learn to add Google OAuth to an express/mongo app
+## OAuth Server
+  This lab adds Dropbox OAuth to an express/mongo web app.  
+  * The backend is created using Dropbox's Developer Platform. It supports a client app on `http://localhost` and supports a server redirect uri to `http://localhost:3000/oauth`.  A backend route in the auth server (`GET /oauth`) handles google oauth 
+  * The frontend is a basic index.html with an anchor tag pointing to the dropbox authorization page. 
 
-## Requirements  
+## To Start Application
+Clone down code. Install all necessary dependencies in each directory using `npm i`. Define enviornment variables (.env) such as PORT, MONGODB_URI, and SECRET in `auth-server` directory. Example of of .env vars: 
+  ```
+  PORT = 3000
+  MONGODB_URI = 'mongodb://localhost:<PORT>/lab-18'
+  SECRET=somesecret
 
-#### backend
-* create an app on the google dev console
- * configure oauth credentials to support a client app on `http://localhost`
- * configure oauth credentials to support a server redirect uri to `http://localhost:3000/oauth/google/code`
-* create a backend route in your auth server: `GET /oauth/google/code` for handling google oauth 
+  ``` 
+Start up servers in terminal, beginning with mongodb. In `auth-server` directory, run `npm run watch`. In `web-server` directory, run `npm start`. View client on `http://localhost:<PORT>`.
 
-#### frontend 
-* create an index.html with an anchor tag pointing to the google authorization page 
-* configure the query string with correct key value pairs
+Login by clicking on  `Login With Dropbox`. After authorization, you should see all the cash...
 
-#### Documentation  
-Write a description of the project in your README.md, including detailed instructions for how to build your app. In your frontend README.md add a code block with your frontend .env vars, and in your backend README.md add a code block with your backend .env vars. 
+You may test routes using Postman or hhttpie. `GET localhost:3000/showMeTheMoney` and the access token will also show you all the cash.
